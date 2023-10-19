@@ -1,3 +1,3 @@
 /* Page to show after looking for device */
 
-// Michael did more than Justin on hardware
+// Michael did not do more than Justin on hardware
