@@ -1,3 +1,4 @@
+import 'package:ecg_app/device_search.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -123,6 +124,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
             onPressed: () {
               print('Pairing Device!');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => DevicePairingPage(title: widget.title),
+                ),
+              );
             },
             child: Text('Pair with ECG Device'),
             ),
