@@ -31,7 +31,10 @@ class _DevicePairingPageState extends State<DevicePairingPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const CircularProgressIndicator(value: null),
+            const SizedBox(
+                width: 150,
+                height: 150,
+                child: CircularProgressIndicator(value: null)),
             TextButton(
               onPressed: () {},
               child: const Text("DEBUG: Go to success page"),
