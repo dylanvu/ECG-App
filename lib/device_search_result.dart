@@ -1,0 +1,1 @@
+/* Page to show after looking for device */
