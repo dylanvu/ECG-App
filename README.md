@@ -1,4 +1,4 @@
-# ecg_app
+# ECG_APP
 
 A new Flutter project.
 
