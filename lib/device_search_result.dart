@@ -23,11 +23,23 @@ class DevicePairingResultPage extends StatefulWidget {
 class _DevicePairingResultPageState extends State<DevicePairingResultPage> {
   @override
   Widget build(BuildContext context) {
+    String resultString =
+        widget.result ? "Successfully connected" : "Could not find device";
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(25),
+              child: Text(
+                resultString,
+                style: const TextStyle(
+                  fontSize: 30,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
             widget.result
                 ? const Icon(
                     Icons.bluetooth_connected,
@@ -40,26 +52,32 @@ class _DevicePairingResultPageState extends State<DevicePairingResultPage> {
                     color: Colors.blue,
                   ),
             if (!widget.result)
-              ElevatedButton(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            DevicePairingPage(title: widget.title),
+                      ),
+                    );
+                  },
+                  child: const Text("Try Again"),
+                ),
+              ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) =>
-                          DevicePairingPage(title: widget.title),
+                      builder: (context) => MyHomePage(title: widget.title),
                     ),
                   );
                 },
-                child: const Text("Try Again"),
+                child: const Text("Return to Home Page"),
               ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(title: widget.title),
-                  ),
-                );
-              },
-              child: const Text("Return to Home Page"),
             ),
           ],
         ),
