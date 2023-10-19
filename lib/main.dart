@@ -1,5 +1,6 @@
 import 'package:ecg_app/device_search.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,15 +39,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   bool switch_pressed = false;
 
-  void _switchClicked(bool value){
-    setState(() {
-      switch_pressed = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -56,8 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             const Text(
               'ECG READING',
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 30, color: Colors.white),
             ),
+            const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 240, 198, 198),
@@ -74,13 +71,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Switch(
-              activeColor: Colors.pink.shade50,
-              inactiveTrackColor: Colors.grey,
-              splashRadius: 25,
-              value: switch_pressed,
-              onChanged: _switchClicked,
+            const SizedBox(height: 90),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Transform.scale(scale: 1.5,
+                    child: Switch(
+                      activeColor: Theme.of(context).colorScheme.primary,
+                      inactiveTrackColor: Colors.grey,
+                      splashRadius: 20,
+                      value: switch_pressed,
+                      onChanged: (bool value){
+                        setState(() {
+                          switch_pressed = value;
+                        });
+                      },
+                    ),
+                  ),
+                  const Text(
+                    '  Record ECG Data',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                   ),
+                ], 
+              ),
             ),
+            const SizedBox(height: 50),
             ElevatedButton(
             onPressed: () {
               print('Pairing Device!');
@@ -91,6 +107,12 @@ class _MyHomePageState extends State<MyHomePage> {
               );
             },
             child: Text('Pair with ECG Device', style: TextStyle(fontSize: 20),),
+            ),
+            const SizedBox(height: 20),
+            Icon(
+              FontAwesomeIcons.heartPulse,
+              size: 50,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ],
         ),
