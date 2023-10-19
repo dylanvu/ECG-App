@@ -1,18 +1,10 @@
 /* Page to show while looking for device */
 
 import 'package:flutter/material.dart';
+import 'device_search_result.dart';
 
 class DevicePairingPage extends StatefulWidget {
   const DevicePairingPage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -31,13 +23,44 @@ class _DevicePairingPageState extends State<DevicePairingPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const CircularProgressIndicator(value: null),
+            // create custom loader icon
+            Stack(
+              alignment: Alignment.center,
+              children: const <Widget>[
+                SizedBox(
+                    width: 150,
+                    height: 150,
+                    child: CircularProgressIndicator(
+                      value: null,
+                      color: Colors.blue,
+                    )),
+                Icon(
+                  Icons.bluetooth_searching,
+                  size: 100,
+                  color: Colors.blue,
+                ),
+              ],
+            ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => DevicePairingResultPage(
+                        title: widget.title, result: true),
+                  ),
+                );
+              },
               child: const Text("DEBUG: Go to success page"),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => DevicePairingResultPage(
+                        title: widget.title, result: false),
+                  ),
+                );
+              },
               child: const Text("DEBUG: Go to failure page"),
             ),
           ],
