@@ -1,6 +1,6 @@
 # ECG_APP
 
-A new Flutter project.
+This is a new Flutter project.
 
 ## Getting Started
 
