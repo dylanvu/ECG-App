@@ -4,6 +4,9 @@
 
 import 'package:flutter/material.dart';
 
+import 'device_search.dart';
+import 'main.dart';
+
 class DevicePairingResultPage extends StatefulWidget {
   const DevicePairingResultPage(
       {Key? key, required this.title, required this.result})
@@ -21,24 +24,42 @@ class _DevicePairingResultPageState extends State<DevicePairingResultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(
-                width: 150,
-                height: 150,
-                child: CircularProgressIndicator(value: null)),
-            TextButton(
-              onPressed: () {},
-              child: const Text("DEBUG: Go to success page"),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text("DEBUG: Go to failure page"),
+            widget.result
+                ? const Icon(
+                    Icons.bluetooth_connected,
+                    size: 200,
+                    color: Colors.blue,
+                  )
+                : const Icon(
+                    Icons.bluetooth_disabled,
+                    size: 200,
+                    color: Colors.blue,
+                  ),
+            if (!widget.result)
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          DevicePairingPage(title: widget.title),
+                    ),
+                  );
+                },
+                child: const Text("Try Again"),
+              ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(title: widget.title),
+                  ),
+                );
+              },
+              child: const Text("Return to Home Page"),
             ),
           ],
         ),
