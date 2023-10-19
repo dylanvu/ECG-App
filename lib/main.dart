@@ -11,20 +11,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'ECG App',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
+
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: const Color.fromARGB(255, 255, 145, 145),
+        ), // Color Scheme
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'ECG Home Page'),
     );
   }
 }
@@ -49,6 +44,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool switch_pressed = false;
 
   void _incrementCounter() {
     setState(() {
@@ -58,6 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+    });
+  }
+
+  void _switchClicked(bool value){
+    setState(() {
+      switch_pressed = false;
     });
   }
 
@@ -96,20 +98,37 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'ECG READING',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Container(
+              decoration: BoxDecoration(
+                color: const Color(0xff7c94b6),
+                border: Border.all(
+                  width: 15,
+                ),
+                borderRadius: BorderRadius.circular(2),
+                shape: BoxShape.rectangle,
+              ),
+              width: 200,
+              height: 100,
+              child: Text('No Device Found...'),
+            ),
+            Switch(
+              activeColor: Colors.pink.shade50,
+              inactiveTrackColor: Colors.grey,
+              splashRadius: 25,
+              value: switch_pressed,
+              onChanged: _switchClicked,
+            ),
+            ElevatedButton(
+            onPressed: () {
+              print('Pairing Device!');
+            },
+            child: Text('Pair with ECG Device'),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
