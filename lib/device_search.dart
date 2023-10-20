@@ -24,10 +24,20 @@ class _DevicePairingPageState extends State<DevicePairingPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const Padding(
+              padding: EdgeInsets.all(25),
+              child: Text(
+                "Looking for Devices...",
+                style: TextStyle(
+                  fontSize: 30,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
             // create custom loader icon
-            Stack(
+            const Stack(
               alignment: Alignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 SizedBox(
                     width: 150,
                     height: 150,
