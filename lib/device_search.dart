@@ -16,6 +16,7 @@ class _DevicePairingPageState extends State<DevicePairingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text(widget.title),
       ),
