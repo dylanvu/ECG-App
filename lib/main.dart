@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title, required this.pairResult}) : super(key: key);
+  const MyHomePage({Key? key, required this.title, required this.pairResult})
+      : super(key: key);
 
   final String title;
   final bool pairResult;
@@ -41,7 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String devicePairingResult = widget.pairResult ? 'ECG Graph Display' : 'No Device Found...';
+    String devicePairingResult =
+        widget.pairResult ? 'ECG Graph Display' : 'No Device Found...';
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
@@ -66,48 +68,51 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 150,
               child: Center(
                 child: Text(
-                  devicePairingResult, 
-                  style: TextStyle(fontSize: 30, color: Colors.white),
+                  devicePairingResult,
+                  style: const TextStyle(fontSize: 30, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
               ),
             ),
             const SizedBox(height: 90),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Transform.scale(scale: 1.5,
-                    child: Switch(
-                      activeColor: Theme.of(context).colorScheme.primary,
-                      inactiveTrackColor: Colors.grey,
-                      splashRadius: 20,
-                      value: switchPressed,
-                      onChanged: (bool value){
-                        setState(() {
-                          switchPressed = value;
-                        });
-                      },
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Transform.scale(
+                  scale: 1.5,
+                  child: Switch(
+                    activeColor: Theme.of(context).colorScheme.primary,
+                    inactiveTrackColor: Colors.grey,
+                    splashRadius: 20,
+                    value: switchPressed,
+                    onChanged: (bool value) {
+                      setState(() {
+                        switchPressed = value;
+                      });
+                    },
                   ),
-                  const Text(
-                    '  Record ECG Data',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                   ),
-                ], 
-              ),
+                ),
+                const Text(
+                  '  Record ECG Data',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+              ],
             ),
             const SizedBox(height: 50),
             ElevatedButton(
-            onPressed: () {
-              print('Pairing Device!');
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => DevicePairingPage(title: widget.title),
-                ),
-              );
-            },
-            child: Text('Pair with ECG Device', style: TextStyle(fontSize: 20),),
+              onPressed: () {
+                print('Pairing Device!');
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        DevicePairingPage(title: widget.title),
+                  ),
+                );
+              },
+              child: const Text(
+                'Pair with ECG Device',
+                style: TextStyle(fontSize: 20),
+              ),
             ),
             const SizedBox(height: 20),
             Icon(
