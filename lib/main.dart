@@ -21,26 +21,27 @@ class MyApp extends StatelessWidget {
           background: const Color.fromARGB(255, 32, 32, 32),
         ), // Color Scheme
       ),
-      home: const MyHomePage(title: 'ECG Home Page'),
+      home: const MyHomePage(title: 'ECG Home Page', pairResult: false),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title, required this.pairResult}) : super(key: key);
 
   final String title;
+  final bool pairResult;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  bool switch_pressed = false;
+  bool switchPressed = false;
 
   @override
   Widget build(BuildContext context) {
+    String devicePairingResult = widget.pairResult ? 'ECG Graph Display' : 'No Device Found...';
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
@@ -65,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 150,
               child: Center(
                 child: Text(
-                  'No Device Found...', 
+                  devicePairingResult, 
                   style: TextStyle(fontSize: 30, color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
@@ -81,10 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       activeColor: Theme.of(context).colorScheme.primary,
                       inactiveTrackColor: Colors.grey,
                       splashRadius: 20,
-                      value: switch_pressed,
+                      value: switchPressed,
                       onChanged: (bool value){
                         setState(() {
-                          switch_pressed = value;
+                          switchPressed = value;
                         });
                       },
                     ),

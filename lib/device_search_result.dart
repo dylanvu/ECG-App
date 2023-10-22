@@ -73,7 +73,7 @@ class _DevicePairingResultPageState extends State<DevicePairingResultPage> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => MyHomePage(title: widget.title),
+                      builder: (context) => MyHomePage(title: widget.title, pairResult: widget.result),
                     ),
                   );
                 },
