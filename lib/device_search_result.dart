@@ -37,6 +37,7 @@ class _DevicePairingResultPageState extends State<DevicePairingResultPage> {
                 resultString,
                 style: const TextStyle(
                   fontSize: 30,
+                  color: Colors.white,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -73,7 +74,8 @@ class _DevicePairingResultPageState extends State<DevicePairingResultPage> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => MyHomePage(title: widget.title, pairResult: widget.result),
+                      builder: (context) => MyHomePage(
+                          title: widget.title, pairResult: widget.result),
                     ),
                   );
                 },

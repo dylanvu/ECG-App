@@ -30,6 +30,7 @@ class _DevicePairingPageState extends State<DevicePairingPage> {
                 "Looking for Devices...",
                 style: TextStyle(
                   fontSize: 30,
+                  color: Colors.white,
                 ),
                 textAlign: TextAlign.center,
               ),
